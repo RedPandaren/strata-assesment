@@ -1,0 +1,1 @@
+# stratapoint-assesment
