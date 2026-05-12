@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Enquiry Processing Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero card">
+        <p class="eyebrow">Strata AI Assessment</p>
+        <h1>Internal enquiry triage assistant</h1>
+        <p class="hero-copy">
+          Paste a client enquiry and the assistant will classify it, summarize the issue,
+          suggest a staff action, and draft a response for review.
+        </p>
+        <div class="chip-row">
+          <span class="chip">Server-side LLM call</span>
+          <span class="chip">Structured JSON output</span>
+          <span class="chip">Human review fallback</span>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="card input-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Input</p>
+              <h2>Client enquiry</h2>
+            </div>
+            <p id="charCount" class="muted">0 / 4000</p>
+          </div>
+
+          <div class="sample-group">
+            <button class="sample-button" type="button" data-sample="new-client">New client</button>
+            <button class="sample-button" type="button" data-sample="urgent">Urgent issue</button>
+            <button class="sample-button" type="button" data-sample="billing">Billing</button>
+            <button class="sample-button" type="button" data-sample="complaint">Complaint</button>
+            <button class="sample-button" type="button" data-sample="unclear">Needs review</button>
+          </div>
+
+          <form id="analysisForm">
+            <label class="sr-only" for="message">Client enquiry</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="11"
+              maxlength="4000"
+              placeholder="Example: Hi, we need urgent help with a leaking roof in one of our strata units. The tenant says the damage is getting worse and needs attention as soon as possible."
+            ></textarea>
+
+            <div class="actions-row">
+              <button id="submitButton" class="primary-button" type="submit">Analyze enquiry</button>
+              <button id="clearButton" class="secondary-button" type="button">Clear</button>
+            </div>
+          </form>
+
+          <p id="formError" class="form-error" hidden></p>
+        </div>
+
+        <div class="card result-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Output</p>
+              <h2>Analysis result</h2>
+            </div>
+            <span id="statusBadge" class="status-badge status-idle">Waiting for input</span>
+          </div>
+
+          <div id="emptyState" class="empty-state">
+            <p>Run an enquiry through the assistant to see the structured result here.</p>
+          </div>
+
+          <div id="resultPanel" hidden>
+            <div class="result-grid">
+              <article class="result-item emphasize">
+                <span class="label">Category</span>
+                <strong id="categoryValue">-</strong>
+              </article>
+              <article class="result-item emphasize">
+                <span class="label">Confidence</span>
+                <strong id="confidenceValue">-</strong>
+              </article>
+              <article class="result-item emphasize">
+                <span class="label">Risk level</span>
+                <strong id="riskValue">-</strong>
+              </article>
+              <article class="result-item emphasize">
+                <span class="label">Secondary signal</span>
+                <strong id="secondarySignalValue">-</strong>
+              </article>
+              <article class="result-item full-width">
+                <span class="label">Summary</span>
+                <p id="summaryValue">-</p>
+              </article>
+              <article class="result-item full-width">
+                <span class="label">Recommended action</span>
+                <p id="actionValue">-</p>
+              </article>
+              <article class="result-item full-width">
+                <span class="label">Suggested response</span>
+                <p id="responseValue">-</p>
+              </article>
+            </div>
+            <div id="reviewBanner" class="review-banner" hidden>
+              This enquiry should be reviewed by a staff member before action.
+            </div>
+            <div id="resultSourceBanner" class="result-source-banner" hidden></div>
+            <div id="reviewReasonList" class="review-reason-list" hidden></div>
+            <div class="meta-row">
+              <span id="providerValue" class="muted">Provider: -</span>
+              <span id="modelValue" class="muted">Model: -</span>
+              <span id="responseTimeValue" class="muted">Response time: -</span>
+            </div>
+            <button id="copyResponseButton" class="secondary-button copy-button" type="button">Copy suggested response</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

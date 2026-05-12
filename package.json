@@ -1,0 +1,30 @@
+{
+  "name": "strata-assesment",
+  "version": "1.0.0",
+  "description": "AI enquiry processing prototype for the Strata AI developer assessment",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedPandaren/stratapoint-assesment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/RedPandaren/stratapoint-assesment/issues"
+  },
+  "homepage": "https://github.com/RedPandaren/stratapoint-assesment#readme",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "openai": "^6.37.0",
+    "zod": "^4.4.3"
+  }
+}
