@@ -239,10 +239,3 @@ This makes the prototype feel safer and more realistic than a pure one-shot mode
 - The app does not persist submissions or audit manual overrides.
 - Risk level is rule-assisted and designed for triage, not formal SLA enforcement.
 
-## Future improvements
-
-- connect the analysis flow to a shared inbox or CRM
-- store submissions and outcomes in a database
-- add staff assignment rules per category
-- add audit history for manual overrides
-- replace heuristic confidence with evaluation-backed confidence calibration
